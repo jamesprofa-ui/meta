@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Instagram Login Redirect</title>
+</head>
+<body>
+  <h1>Instagram Login Complete</h1>
+  <p>If you see this page, the login flow has redirected successfully.</p>
+
+  <script>
+    // Instagram/Facebook OAuth vraća access token ili code u URL query string
+    const params = new URLSearchParams(window.location.search);
+    
+    if (params.has('code')) {
+      // OAuth code za razmjenu u access token
+      console.log('OAuth Code:', params.get('code'));
+    }
+    
+    if (params.has('access_token')) {
+      console.log('Access Token:', params.get('access_token'));
+    }
+    
+    // Opcionalno: prikaz u stranici
+    document.body.innerHTML += '<pre>' + JSON.stringify(Object.fromEntries(params), null, 2) + '</pre>';
+  </script>
+</body>
+</html>
